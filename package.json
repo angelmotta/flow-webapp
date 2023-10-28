@@ -1,0 +1,28 @@
+{
+    "name": "flow-webapp",
+    "version": "1.0.0",
+    "description": "Flow is a web application for money exchange. My side project to learn Javascript and React",
+    "scripts": {
+        "dev": "parcel index.html",
+        "build": "parcel build index.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/angelmotta/flow-webapp.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/angelmotta/flow-webapp/issues"
+    },
+    "homepage": "https://github.com/angelmotta/flow-webapp#readme",
+    "devDependencies": {
+        "parcel": "^2.10.1",
+        "process": "^0.11.10"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}
