@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import NavBar from "./Components/NavBar";
 import Body from "./Components/Body";
+import Signup from "./Components/Signup";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const App = () => (
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/signup",
-        element: <div>Signup</div>,
+        element: <Signup />,
     },
     {
         path: "/login",

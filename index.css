@@ -20,7 +20,8 @@
 }
 
 nav,
-.body-container {
+.body-container,
+.signup-container {
     margin: 1% 2%;
 }
 
@@ -28,3 +29,7 @@ nav,
     display: flex;
     justify-content: space-evenly;
 }
+
+/* .signup-container {
+    align-items: center;   
+} */
