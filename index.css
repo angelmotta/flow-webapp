@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 1px solid;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
+
+.desktop-nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+nav,
+.body-container {
+    margin: 1% 2%;
+}
+
+.body-container {
+    display: flex;
+    justify-content: space-evenly;
+}
