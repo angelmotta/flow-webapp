@@ -4,6 +4,13 @@
     border: 1px solid;
 }
 
+html,
+body,
+#root,
+#root > div {
+    height: 100%;
+}
+
 .link {
     text-decoration: none;
     color: black;
@@ -30,6 +37,19 @@ nav,
     justify-content: space-evenly;
 }
 
-/* .signup-container {
-    align-items: center;   
-} */
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 700px;
+    margin: 20px auto;
+    text-align: center; /* Center the content inside the div horizontally */
+}
+
+.idp-options-container {
+    margin: 0 auto; /* Center the div horizontally by setting left and right margins to auto */
+}
+
+.idp-container {
+    margin: 20px auto;
+}

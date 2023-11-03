@@ -64,9 +64,9 @@ const Signup = () => {
         <div>
             <NavBar />
             <div className="signup-container">
-                <div>Create tu cuenta</div>
+                <h1>Crea tu cuenta</h1>
                 <div className="idp-options-container">
-                    <div id="g-signup-div"></div>
+                    <div className="idp-container" id="g-signup-div"></div>
                 </div>
             </div>
         </div>
