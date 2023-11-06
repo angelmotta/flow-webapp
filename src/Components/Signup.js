@@ -1,13 +1,14 @@
 import NavBar from "./NavBar";
 import { useEffect } from "react";
+import { FLOW_USERS_API_URL } from "../util/constants";
 
-const Signup = () => {
+const SignupSelectIdp = () => {
     useEffect(() => {
         const onPageLoad = () => {
             /* global google */
             google.accounts.id.initialize({
                 client_id: process.env.G_CLIENT_ID,
-                callback: handleCredentialResponse,
+                callback: handleGoogleCredential,
             });
 
             google.accounts.id.renderButton(
@@ -24,39 +25,36 @@ const Signup = () => {
         }
     }, []);
 
-    const handleCredentialResponse = async (response) => {
+    const handleGoogleCredential = async (response) => {
         console.log("Google ID token: " + response.credential);
+        const token = response.credential;
         // Send post request
         try {
-            console.log("TODO: execute post request");
-            // const responseAuth = await fetch(`${AUTH_API_URL}/signup`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ credential: response.credential }),
-            // });
-            // if (responseAuth.ok) {
-            //     console.log(`user successfully validated`);
-            //     // auth.saveUserData(responseAuth);     // Navigate to dashboard
-            //     // Save external token to the step register personal information
-            //     auth.setExternalToken(response.credential);     // Navigate to dashboard
-            //     // Navigate to SignupUser
-            //     goTo("/signup/user");
-            //     console.log(`Oauth flow finished`);
-            // } else {
-            //     // User already exists (409: conflict)
-            //     console.log(`Received status: ${responseAuth.status}`);
-            //     const res = (await responseAuth.json());
-            //     console.log(res.error);
-            //     setErrorResponse(res.error);   // Show error message to user
-            // }
+            console.log("Post request to USERS_API");
+            const resApi = await fetch(`${FLOW_USERS_API_URL}/signup`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ step: "1", idp: "google" }),
+            });
+            if (resApi.ok) {
+                console.log(`user available`);
+                // TODO: Navigate to Step 2
+            } else {
+                // User already exists (409: conflict)
+                console.log(`Received status: ${resApi.status}`);
+                const res = await resApi.json();
+                console.log(res.error);
+                // setErrorResponse(res.error);   // Show error message to user
+            }
         } catch (error) {
             console.log("Fetch error: something went wrong");
             console.log(error);
-            setErrorResponse(
-                "Servicio no disponible: intentalo nuevamente en unos minutos"
-            ); // Flow App auth service is down
+            // setErrorResponse(
+            //     "Servicio no disponible: intentalo nuevamente en unos minutos"
+            // ); // Flow App auth service is down
         }
     };
 
@@ -73,4 +71,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default SignupSelectIdp;
