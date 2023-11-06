@@ -40,7 +40,7 @@ const SignupSelectIdp = () => {
                 body: JSON.stringify({ step: "1", idp: "google" }),
             });
             if (resApi.ok) {
-                console.log(`user available`);
+                console.log(`user is available`);
                 // TODO: Navigate to Step 2
             } else {
                 // User already exists (409: conflict)
@@ -59,13 +59,10 @@ const SignupSelectIdp = () => {
     };
 
     return (
-        <div>
-            <NavBar />
-            <div className="signup-container">
-                <h1>Crea tu cuenta</h1>
-                <div className="idp-options-container">
-                    <div className="idp-container" id="g-signup-div"></div>
-                </div>
+        <div className="signup-container">
+            <h1>Crea tu cuenta</h1>
+            <div className="idp-options-container">
+                <div className="idp-container" id="g-signup-div"></div>
             </div>
         </div>
     );
