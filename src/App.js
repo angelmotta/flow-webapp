@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import NavBar from "./Components/NavBar";
 import Body from "./Components/Body";
 import SignupSelectIdp from "./Components/SignupSelectIdp";
+import SignupPersonalData from "./Components/SignupPersonalData";
 import Error from "./Components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
                 element: <Body />,
             },
             {
-                path: "/signup",
+                path: "/signup/step1",
                 element: <SignupSelectIdp />,
+            },
+            {
+                path: "/signup/step2",
+                element: <SignupPersonalData />,
             },
             {
                 path: "/login",

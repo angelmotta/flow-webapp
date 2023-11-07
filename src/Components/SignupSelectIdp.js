@@ -1,8 +1,10 @@
 import NavBar from "./NavBar";
 import { useEffect } from "react";
 import { FLOW_USERS_API_URL } from "../util/constants";
+import { useNavigate } from "react-router-dom";
 
 const SignupSelectIdp = () => {
+    const navigate = useNavigate();
     useEffect(() => {
         const onPageLoad = () => {
             /* global google */
@@ -41,7 +43,7 @@ const SignupSelectIdp = () => {
             });
             if (resApi.ok) {
                 console.log(`user is available`);
-                // TODO: Navigate to Step 2
+                navigate("/signup/step2");
             } else {
                 // User already exists (409: conflict)
                 console.log(`Received status: ${resApi.status}`);
