@@ -62,7 +62,7 @@ const SignupSelectIdp = () => {
 
     return (
         <div className="signup-container">
-            <h1>Crea tu cuenta</h1>
+            <h1 className="sub-title">Crea tu cuenta</h1>
             <div className="idp-options-container">
                 <div className="idp-container" id="g-signup-div"></div>
             </div>

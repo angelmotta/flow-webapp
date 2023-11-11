@@ -27,9 +27,43 @@ body,
 }
 
 nav,
-.body-container,
-.signup-container {
+.body-container {
     margin: 1% 2%;
+}
+
+/* form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+} */
+
+label {
+    font-weight: bold;
+    display: flex;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    background-color: #4a5568;
+    border: 2px solid #4a5568;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 1em auto 2em;
+    display: block;
 }
 
 .body-container {
@@ -37,13 +71,16 @@ nav,
     justify-content: space-evenly;
 }
 
-.signup-container {
+.signup-container,
+.signup-personal-data {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    max-width: 700px;
+    max-width: 450px;
     margin: 20px auto;
-    text-align: center; /* Center the content inside the div horizontally */
+}
+
+.sub-title {
+    text-align: center;
 }
 
 .idp-options-container {
