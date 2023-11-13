@@ -1,12 +1,35 @@
 import { useFormik } from "formik";
+import { FLOW_USERS_API_URL } from "../util/constants";
 import * as Yup from "yup";
 
-const validateDNI = (value) => {
-    let error;
-    if (!value) {
-        error = "DNI required";
+const handleSubmit = async (values) => {
+    try {
+        const response = await fetch(`${FLOW_USERS_API_URL}/signup`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                step: "2",
+                idp: "google",
+                ...values,
+            }),
+        });
+
+        if (response.ok) {
+            console.log(`Successfully response`);
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+        } else {
+            console.log(`Backend error response`);
+            const jsonErrorResponse = await response.json();
+            console.log(jsonErrorResponse);
+        }
+    } catch (e) {
+        console.log("something went wrong");
+        console.log(e);
     }
-    return error;
 };
 
 const SignupPersonalData = () => {
@@ -37,9 +60,10 @@ const SignupPersonalData = () => {
                 .max(100, "Dirección debe ser 100 caracteres o menos")
                 .required("Dirección requerida"),
         }),
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
+        // onSubmit: (values) => {
+        //     alert(JSON.stringify(values, null, 2));
+        // },
+        onSubmit: handleSubmit,
     });
 
     return (
