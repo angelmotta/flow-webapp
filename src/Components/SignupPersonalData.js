@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { FLOW_USERS_API_URL } from "../util/constants";
+import { useAuth } from "../auth/AuthProvider";
 import * as Yup from "yup";
 
 const handleSubmit = async (values) => {
@@ -33,6 +34,7 @@ const handleSubmit = async (values) => {
 };
 
 const SignupPersonalData = () => {
+    const authContext = useAuth();
     const formik = useFormik({
         initialValues: {
             dni: "",
@@ -66,6 +68,7 @@ const SignupPersonalData = () => {
         onSubmit: handleSubmit,
     });
 
+    console.log(`Render step2 - SignupPersonalData`);
     return (
         <div className="signup-personal-data">
             <h1 className="sub-title">Registrate</h1>

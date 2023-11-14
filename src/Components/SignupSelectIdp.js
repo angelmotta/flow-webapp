@@ -2,9 +2,12 @@ import NavBar from "./NavBar";
 import { useEffect } from "react";
 import { FLOW_USERS_API_URL } from "../util/constants";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthProvider";
 
 const SignupSelectIdp = () => {
     const navigate = useNavigate();
+    const authContext = useAuth();
+
     useEffect(() => {
         const onPageLoad = () => {
             /* global google */
@@ -33,7 +36,7 @@ const SignupSelectIdp = () => {
         // Send post request
         try {
             console.log("Post request to USERS_API");
-            const resApi = await fetch(`${FLOW_USERS_API_URL}/signup`, {
+            const responseApi = await fetch(`${FLOW_USERS_API_URL}/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,13 +44,15 @@ const SignupSelectIdp = () => {
                 },
                 body: JSON.stringify({ step: "1", idp: "google" }),
             });
-            if (resApi.ok) {
-                console.log(`user is available`);
+            if (responseApi.ok) {
+                console.log(`API response: email is available`);
+                authContext.setIsValidExternalToken(true);
+                authContext.setExternalToken(token);
                 navigate("/signup/step2");
             } else {
-                // User already exists (409: conflict)
-                console.log(`Received status: ${resApi.status}`);
-                const res = await resApi.json();
+                // TODO: Handle if user already exists (409: conflict)
+                console.log(`Received status: ${responseApi.status}`);
+                const res = await responseApi.json();
                 console.log(res.error);
                 // setErrorResponse(res.error);   // Show error message to user
             }

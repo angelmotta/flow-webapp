@@ -6,6 +6,7 @@ import SignupSelectIdp from "./Components/SignupSelectIdp";
 import SignupPersonalData from "./Components/SignupPersonalData";
 import Error from "./Components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { AuthProvider } from "./auth/AuthProvider";
 
 const App = () => (
     <div className="app">
@@ -41,4 +42,8 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(
+    <AuthProvider>
+        <RouterProvider router={router} />
+    </AuthProvider>
+);
